@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Glass Bridge</title>
+    
+    <script defer type="text/javascript" src="js/index.js"></script>
+    <script defer type="text/javascript" src="js/examples.js"></script>
+    <link rel="stylesheet" href="index.css"></link>
+    <link rel="stylesheet" href="examples.css"></link>
+  </head>
+  <body>
+    <!-- nav bar -->
+          <div id="navBar">
+              <a href="main.html"><div class="left">Main</div></a>
+             <a href="examples.html"><div class="right">Examples</div></a>
+              <a href="doc.html"><div class="right">Documentations</div></a>
+          </div>
+          <h1>Basic Information</h1>
+          <h2 class="header">How to play the Lottery Game</h2>
+          <div class="separator"></div>
+          <p class="text">The game works like the glass bridge game in Squid Game.Players of the game first choose the prize that they want to try to win and will then be displayed the corresponding glass bridge. The glass bridge is made of tempered and regular glasses. If the user stepped on all the tempered glass and made their way to the end, they win the prize. If they stepped on regular glass, they fall and lose the prize. </p>
+          <h2 class="header">What developers must specify</h2>
+          <div class="separator"></div>
+          <p class="text">Developers must specify the prizes for the lottery game and the probability of winning each prize, which by default determines how many glass panels there are in the bridge. Developer can also specify the number of glass panels they want in the bridge </p>
+          <br/>
+            <br/>
+            <br/>
+           <h1>Examples</h1>
+           <h2 class="header">A Basic Bridge Game</h2>
+           <p class="text">Only the basic information is provided by the developer, e.g. the prizes for the lottery game and the probability of winning each prize. The probability of the jumper falling at each step, in this case, is 0.5. This means that one of the two parallel glass panels must break. The number of glass panels is not specified and is calculated by log0.5(prob of winning the prize). We specified the probability of winning each prize to be pretty low to show more glass panels. This means that winning this lottery game is going to be extremely hard. But this is closer to the actual squid game. Expect to lose on this one.</p>
+           <div id="ex1"></div>
+          <br/>
+            
+           <div class="code-header">JS code</div>
+           <div class="code">
+             const ex1 = document.getElementById("ex1");<br/>
+const bridgeGame1 = new Game({<br/>
+  data: [<br/>
+    { text: "$50 gift card", chance: 10 },<br/>
+    { text: "$100 gift card", chance: 5 },<br/>
+    { text: "$200 gift card", chance: 1 },<br/>
+  ],<br/>
+});<br/>
+
+const gameview1 = bridgeGame1.lottery_game();<br/>
+ex1.appendChild(gameview1);
+</div>
+           <br/>
+            <br/>
+            <br/>
+          
+          
+<h2 class="header">A customized Bridge Game</h2>
+<p class="text">The basic information is provided by the developer, e.g. the prizes for the lottery game and the probability of winning each prize. The number of glass panels is also specified. This means that the probability of the jumper to fall at each step may no longer be 0.5, and is calculated such that the probability to fall at each step to the power of the number of glass panels is the prob of winning the prize. This means that both two parallel glass panels may not break. We specified the probability of winning each prize to be high this time. Expect to win the $5 prize. We also used all of the customization possible in this version. We changed the Start Screen background, the avatar of the jumper, and the color of the bridge.  </p>
+<div id="ex2"></div>
+<br/>
+<div class="code-header">JS code</div>
+<div class="code">
+  const ex2 = document.getElementById("ex2");<br/>
+const bridgeGame2 = new Game({<br/>
+  data: [<br/>
+    { text: "$5 gift card", chance: 100 },<br/>
+    { text: "$10 gift card", chance: 80 },<br/>
+    { text: "$15 gift card", chance: 50 },<br/>
+  ],<br/>
+});<br/>
+bridgeGame2.set_num_steps([4, 8, 10]);<br/>
+bridgeGame2.reset_startScreenBck("bck.jpeg", "no-repeat");<br/>
+bridgeGame2.change_Jumper("new_jumper.png", "new_jumper_dead.png");<br/>
+bridgeGame2.change_bridge_color("#CC0000");<br/>
+const gameview2 = bridgeGame2.lottery_game();<br/>
+ex2.appendChild(gameview2);<br/>
+<br/>
+<br/>
+<br/>
+</div>
+
+	
+   </body>
+</html>

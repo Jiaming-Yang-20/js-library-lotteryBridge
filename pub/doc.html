@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="doc.css"></link>
+    <title>Documentation</title>
+  </head>
+  <body>
+      <div>
+          <!-- nav bar -->
+          <div id="navBar">
+              <a href="main.html"><div class="left">Main</div></a>
+             <a href="examples.html"><div class="right">Examples</div></a>
+              <a href="doc.html"><div class="right">Documentations</div></a>
+          </div>
+          <!-- start of documentation -->
+          <h1>Lottery Bridge Documentation</h1>
+            <br/>
+            <br/>
+            <br/>
+          <!-- getting started section -->
+          <h2 class="header">Getting Started</h2>
+          <div class="separator"></div>
+        <div class="started">
+          <h3>1. Load js/index.js and index.css</h3>
+          <h3>2. Initiate a Lottery Bridge game instance</h3>
+          <div class="example">e.g. const bridgeGame = new Game({data: [
+        { text: "$50 gift card", chance: 10 },
+        { text: "$100 gift card", chance: 5 },
+        { text: "$200 gift card", chance: 1 },],});
+    </div>
+<h3>3. Call the method lottery_game() on the game instance to get a gameView </h3>
+<div class="example">e.g. const gameview = bridgeGame.lottery_game();
+</div>
+<h3>4. Select the DOM element that you want to append the Lottery Bridge game to</h3>
+          <div class="example">e.g. const body = document.querySelector("body");</div>
+<h3>5. Append the gameView to the DOM element </h3>
+<div class="example">e.g. body.appendChild(gameview);</div>
+</div>
+<!-- options section -->
+<br/>
+<br/>
+<br/>
+<h2 class="header">Options</h2>
+<h3>All the global options available.</h3>
+<div class="separator"></div>
+
+<table id="options">
+  <tr>
+    <th>Property</th>
+    <th>Default</th>
+    <th>Type</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td>data (required)</td>
+    <td>/</td>
+    <td>List of objects</td>
+    <td>The data for the lottery game</td>
+  </tr>
+</table>
+
+<br/>
+<br/>
+<br/>
+<h2 class="header">Objects in options.data</h2>
+<h3>All the options available to customize the objects in data.</h3>
+<div class="separator"></div>
+
+<table id="options">
+  <tr>
+    <th>Property</th>
+    <th>Default</th>
+    <th>Type</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td>text (required)</td>
+    <td>/</td>
+    <td>String</td>
+    <td>The name of the prize</td>
+  </tr>
+  <tr>
+    <td>chance (required)</td>
+    <td>/</td>
+    <td>an Integer between 0 and 100</td>
+    <td>The probability of winning the prize in percentage</td>
+  </tr>
+  <tr>
+    <td>steps</td>
+    <td>log0.5(chance)</td>
+    <td>Integer</td>
+    <td>The number of glass panels in the bridge. If set, the prob of failing at each jump will no longer be 0.5.  </td>
+  </tr>
+</table>
+<br/>
+<br/>
+<br/>
+<h2 class="header">Complete configuration</h2>
+<div class="separator"></div>
+<div class="code">
+    <p>const bridgeGame = new Game({<br/>
+          data: <br/>[
+    { text: "$5 gift card", chance: 100, steps:4 },<br/>
+    { text: "$10 gift card", chance: 90, steps:8 },<br/>
+    { text: "$15 gift card", chance: 70, steps:10 },
+  ],<br/>
+});</p>
+</div>
+<br/>
+<br/>
+<br/>
+<h2 class="header">Methods</h2>
+<h3>Methods on the game object to customize the lottery game.</h3>
+<div class="separator"></div>
+<div class="started">
+<h3>1. lottery_game()</h3>
+<h4 class="example">Explanation: Used to draw the lottery game. Return a 'div' that can be appended to a DOM element </h4>
+<h4>Example: </h4>
+<div class="code">
+<p>const gameview = bridgeGame.lottery_game();</p>
+</div>
+
+<h3>2. set_num_steps(lst_of_steps)</h3>
+<h4 class="example">Explanation:  Set the number of glass panels in the bridge for each prize. If set, the prob of failing at each jump will no longer be 0.5. The probability to fall at each step to the power of the number of glass panels is the prob of winning the prize. </h4>
+<h4>Example: </h4>
+<div class="code">
+<p>bridgeGame.set_num_steps([4, 8, 10]);</p>
+</div>
+
+<h3>3. reset_chance(lst_of_chances)</h3>
+<h4 class="example">Explanation:  Can used to reset the chances of winning each prize </h4>
+<h4>Example: </h4>
+<div class="code">
+<p>bridgeGame.reset_chance([100, 90, 70])</p>
+</div>
+
+<h3>4. reset_startScreenBck(img, repeat)</h3>
+<h4 class="example">Explanation:  Reset the background image of the start screen/ menu screen of the game. 'img' is in the form of String. 'repeat' indicates whether the background image should be repeated, it can either be 'repeat' or 'no-repeat'  </h4>
+<h4>Example: </h4>
+<div class="code">
+<p>bridgeGame.reset_startScreenBck("bck.jpeg", "no-repeat");</p>
+</div>
+
+<h3>5. reset_gameScreenBck(img, repeat)</h3>
+<h4 class="example">Explanation:  Reset the background image of the game screen of the game. 'img' is in the form of String. 'repeat' indicates whether the background image should be repeated, it can either be 'repeat' or 'no-repeat'  </h4>
+<h4>Example: </h4>
+<div class="code">
+<p>bridgeGame.reset_gameScreenBck("bck.jpeg", "no-repeat");</p>
+</div>
+
+<h3>6. reset_endSreenBck(img, repeat)</h3>
+<h4 class="example">Explanation:  Reset the background image of the ending screen of the game. 'img' is in the form of String. 'repeat' indicates whether the background image should be repeated, it can either be 'repeat' or 'no-repeat'  </h4>
+<h4>Example: </h4>
+<div class="code">
+<p>bridgeGame.reset_endSreenBck("bck.jpeg", "no-repeat");</p>
+</div>
+
+<h3>7. change_Jumper(jumper_img, jumper_dead_img)</h3>
+<h4 class="example">Explanation:  Change the image of the jumper in the game. 'jumper_img' is the image of the jumper. 'jumper_dead_img' is the image to show when the jumper is dead  </h4>
+<h4>Example: </h4>
+<div class="code">
+<p>bridgeGame.change_Jumper("new_jumper.png", "new_jumper_dead.png");</p>
+</div>
+
+<h3>7. change_bridge_color(color)</h3>
+<h4 class="example">Explanation:  Change the color of the bridge. </h4>
+<h4>Example: </h4>
+<div class="code">
+<p>bridgeGame.change_bridge_color("#CC0000");</p>
+</div>
+
+</div>
+<br/>
+<br/>
+<br/>
+</div>
+  </body>
+</html>
